@@ -1,0 +1,15 @@
+-r
+C:\Users\Arthur\source\repos\Contest Center Eighth powers\Contest Center Eighth powers\VTune Profiler Results\Contest Center Eighth powers\r002hs
+--stack-stitching
+--data-limit-mb=1000
+--disk-space-limit=0
+--mrte-type=java,dotnet,python
+--itt-config=frame
+--itt-config=task,event,counter
+--stackwalk=offline
+--mrte-mode=auto
+--type=cpu:counters:nostack
+--type=cpu:stack
+--interval=10
+--
+C:\Users\Arthur\source\repos\Contest Center Eighth powers\x64\Release\Partition odd even v2.exe

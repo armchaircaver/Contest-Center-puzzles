@@ -1,0 +1,14 @@
+-r
+C:\Users\Arthur\source\repos\Contest Center Eighth powers\is_square test\VTune Profiler Results\is_square test\r000ps
+--stack-stitching
+--data-limit-mb=1000
+--disk-space-limit=0
+--mrte-type=java,dotnet
+--itt-config=frame
+--stackwalk=offline
+--mrte-mode=auto
+--type=cpu:counters:nostack
+--type=cpu:nostack
+--interval=100
+--
+C:\Users\Arthur\source\repos\Contest Center Eighth powers\x64\Release\is_square test.exe

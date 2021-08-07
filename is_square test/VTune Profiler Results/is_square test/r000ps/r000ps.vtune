@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <rdmgr>
+  <timestamp type="u64_t">1610577289</timestamp>
+  <hostname>Arthur-PC</hostname>
+  <os>windows</os>
+  <product>Intel® oneAPI VTune™ Profiler 2021.1.1 Gold</product>
+  <buildNumber type="s32_t">613804</buildNumber>
+  <logicalCPUCount type="s32_t">4</logicalCPUCount>
+  <physicalCoreCount type="s32_t">2</physicalCoreCount>
+  <processorPackageCount type="s32_t">1</processorPackageCount>
+  <CPUFrequency type="s64_t">2400000000</CPUFrequency>
+  <CPUFamily type="s32_t">6</CPUFamily>
+  <CPUModel type="s32_t">37</CPUModel>
+  <CPUStepping type="s32_t">5</CPUStepping>
+  <CPUBrandName>Intel(R) Core(TM) i3 CPU       M 370  @ 2.40GHz</CPUBrandName>
+  <isa>sse4_2</isa>
+  <collectionTimeBegin type="u64_t">1610577289</collectionTimeBegin>
+  <collectionTimeEnd type="u64_t">1610577317</collectionTimeEnd>
+  <variables>
+   <at>ps</at>
+  </variables>
+ </rdmgr>
+</root>
