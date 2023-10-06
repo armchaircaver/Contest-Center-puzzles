@@ -44,6 +44,8 @@ void generate_pandigital() {
 __declspec(noinline) void search_lower() {
     for (auto a : pansquared) {
         for (auto b : pansquared) {
+            if (b > a)
+                break;
             if (pansquared_set.find(a + b) != pansquared_set.end()) {
                 std::cout << isqrt(a) * 9 << ", " << isqrt(b) * 9 << "\n";
                 return;

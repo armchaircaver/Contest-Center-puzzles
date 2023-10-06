@@ -148,16 +148,38 @@ int main() {
             break;
         if (n % 100000000 == 0) {
             t.end();
-            printf("tested n=%llu, %llu ms\n", n,t.ms() );
+            printf("square tested n=%llu, %llu ms\n", n,t.ms() );
             t.start();
         }
-		if (is_square(n2))
-			if (!is_square(n2 + 1))
-				if (!is_square(n2 - 1))
+		if (square(n2))
+			if (!square(n2 + 1))
+				if (!square(n2 - 1))
 					continue;
-		printf("failure for n=%llu, n^2=%llu\n", n, n2);
-		std::cout << is_square(n2) << "," << is_square(n2 + 1) << "," << is_square(n2 - 1) << "\n";
+		printf("square failure for n=%llu, n^2=%llu\n", n, n2);
+		std::cout << square(n2) << "," << square(n2 + 1) << "," << square(n2 - 1) << "\n";
 		exit(1);
 
 	}
+
+    t.start();
+
+    for (int64_t n = 2; n <= (1ULL << 32); n++) {
+        int64_t n2 = n * n;
+        if (n2 < 0)
+            break;
+        if (n % 100000000 == 0) {
+            t.end();
+            printf("is_square tested n=%llu, %llu ms\n", n, t.ms());
+            t.start();
+        }
+        if (is_square(n2))
+            if (!is_square(n2 + 1))
+                if (!is_square(n2 - 1))
+                    continue;
+        printf("is_square failure for n=%llu, n^2=%llu\n", n, n2);
+        std::cout << is_square(n2) << "," << is_square(n2 + 1) << "," << is_square(n2 - 1) << "\n";
+        exit(1);
+
+    }
+
 }
