@@ -58,7 +58,9 @@ bool is_square_fb(uint64_t n)
 	// Empirical timing shows this second round would be useful for n>10^100 or so.
 
 	   // VERY expensive final definitive test
-	uint64_t root = (uint64_t) sqrt((double)n); 
+	//uint64_t root = (uint64_t) sqrt((double)n); 
+	uint64_t root = (uint64_t)sqrtl((long double)n);
+
 	return root * root == n; // true if and only if n is a square
 }
 
@@ -80,8 +82,8 @@ int mod63[63] = { 1,1,0,0,1,0,0,1,0,1,0,0,0,0,1,0,1,0,1,0,0,
 				 0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,1,1,0,0,0,0,
 				 0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0 };
 
-const int64_t MAXROOT = 1000000;
-const int64_t MAX = MAXROOT * MAXROOT;
+//const int64_t MAXROOT = 1000000;
+//const int64_t MAX = MAXROOT * MAXROOT;
 
 
 /*
@@ -101,10 +103,11 @@ uint64_t isqrt(uint64_t const n)
 bool is_square(uint64_t n) {
 	//if (!mod64[n % 64]) return 0;
 	//if (!(m64 & (1ULL << (n % 64)))) return 0;
+	
 	if (!_bittest64(&m64, n % 64)) return 0;
 	if (!mod63[n % 63]) return 0;
 	if (!mod65[n % 65]) return 0;
-
+	
 	uint64_t rt = (uint64_t)sqrtl((long double)n);
 
 	// isqrt is an order of magnitude slower than sqrtl
