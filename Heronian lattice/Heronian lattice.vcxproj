@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{9d38c9d1-ace1-4c28-8054-0c79f328b719}</ProjectGuid>
-    <RootNamespace>Partitionoddevenv2</RootNamespace>
+    <ProjectGuid>{1a82bea0-05e2-45dc-8d2b-984a5da60233}</ProjectGuid>
+    <RootNamespace>Heronianlattice</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Partition odd even v2.cpp" />
+    <ClCompile Include="Heronian lattice.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

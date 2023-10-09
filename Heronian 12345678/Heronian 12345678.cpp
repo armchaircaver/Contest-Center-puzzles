@@ -8,6 +8,9 @@
 #include <iostream>
 #include <set>
 #include <time.h>
+#include <unordered_set>
+#include "../Partition odd even/robin_hood.h"
+
 
 
 class CandidateTwosquares {
@@ -44,6 +47,15 @@ int main() {
 
 	print_time();
 
+	//std::unordered_set<int64_t> C2s;
+	//absl::flat_hash_set<int64_t> C2s;
+	robin_hood::unordered_set<int64_t> C2s;
+
+	for (auto x : cts.cand_twosquares) {
+		int64_t c = stoi(x.first);
+		C2s.insert(c*c);
+	}
+
 	for (auto A : cts.cand_twosquares) {
 		int64_t a = stoi(A.first);
 		//if (a != 15487236) continue;
@@ -76,7 +88,8 @@ int main() {
 
 
 					int64_t d = Tset[t][i];
-					if (Tset[t][1 - i] % 2 > 0) 
+					// if Tset[t][1 - i] is 2*Area, then i is divisible by 12, as area is divisible by 6
+					if (Tset[t][1 - i] % 12 ) 
 						continue;
 					int64_t Area = Tset[t][1 - i] / 2;
 					
@@ -91,7 +104,7 @@ int main() {
 
 					int64_t c2 = a * a + b * b - 2 * d;
 					//std::cout << "c2 (-2d) = " << c2 << ", c=" << sqrt(c2) << "\n";
-					if (c2 > b * b && is_square(c2)) {
+					if (c2 > b * b && C2s.find(c2) != C2s.end() ) {
 						int64_t c = (int64_t)sqrt((long double)c2);
 						if (cts.cand_twosquares.find(std::to_string(c)) != cts.cand_twosquares.end()) {
 							std::string Area_st = std::to_string(Area);
@@ -103,7 +116,7 @@ int main() {
 					}
 					c2 = a * a + b * b + 2 * d;
 					//std::cout << "c2 (+2d) = " << c2 << ", c=" << sqrt(c2) << "\n";
-					if (is_square(c2)) {
+					if ( C2s.find(c2) != C2s.end() ) {
 						int64_t c = (int64_t)sqrt((long double)c2);
 						if (cts.cand_twosquares.find(std::to_string(c)) != cts.cand_twosquares.end()) {
 							std::string Area_st = std::to_string(Area);
@@ -131,5 +144,8 @@ without any mods:							2.3 min
 with string check to eliminate '0'& '9' :	6.5 min
 with sprintf check to eliminate '0'& '9' :	>20 min
 with sorting and eliminating duplicates :	3.5 min
+with find c^2 in std::unordered_set			5.0 min
+with find c^2 in robin_hood::unordered_set	2.0 min
+test area%6=0								2.3
 
 */

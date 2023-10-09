@@ -143,6 +143,7 @@
     <ClCompile Include="Heronian 12345678.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Partition odd even\robin_hood.h" />
     <ClInclude Include="json.hpp" />
   </ItemGroup>
   <ItemGroup>

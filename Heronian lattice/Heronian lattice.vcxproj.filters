@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Partition odd even v2.cpp">
+    <ClCompile Include="Heronian lattice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
