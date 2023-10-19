@@ -1,7 +1,7 @@
 #include <map>
 #include "../is_square/is_square.h"
 #include <cstdio>
-#include "json.hpp" 
+#include "../Heronian 12345678/json.hpp" 
 #include <string>
 #include <vector>
 #include <fstream>
@@ -10,6 +10,8 @@
 #include <time.h>
 #include <unordered_set>
 #include "../Partition odd even/robin_hood.h"
+#include <chrono>
+#include <thread>
 
 
 
@@ -18,15 +20,16 @@ public:
 	std::map<std::string, std::vector <std::vector<int64_t>>> cand_twosquares;
 
 	CandidateTwosquares() {
-		std::cout << "loading cand_twosquares ...\n";
+		std::cout << "loading cand_twosquares 123456789 ...\n";
 
-		std::ifstream input("cand_twosquares.json");
+		std::ifstream input("cand_twosquares 123456789.json");
 		nlohmann::json j;
 
 		input >> j;
 
 		cand_twosquares = j;
-		std::cout << cand_twosquares.size() << " cand_twosquares loaded\n";
+		std::cout << cand_twosquares.size() << " cand_twosquares 123456789 loaded\n";
+		std::cout.flush();
 	}
 };
 
@@ -59,9 +62,10 @@ void examine(int64_t a, int64_t b, int64_t d, int64_t twoArea) {
 		int64_t c = (int64_t)sqrt((long double)c2);
 		if (cts.cand_twosquares.find(std::to_string(c)) != cts.cand_twosquares.end()) {
 			std::string Area_st = std::to_string(Area);
-			if (Area_st.find('0') == std::string::npos && Area_st.find('9') == std::string::npos) {
+			if (Area_st.find('0') == std::string::npos ) {
 				std::cout << "SOLUTION " << a << " " << b << " " << c << " " << Area << "\n";
 				print_time();
+				std::cout.flush();
 			}
 		}
 	}
@@ -71,45 +75,80 @@ void examine(int64_t a, int64_t b, int64_t d, int64_t twoArea) {
 		int64_t c = (int64_t)sqrt((long double)c2);
 		if (cts.cand_twosquares.find(std::to_string(c)) != cts.cand_twosquares.end()) {
 			std::string Area_st = std::to_string(Area);
-			if (Area_st.find('0') == std::string::npos && Area_st.find('9') == std::string::npos) {
+			if (Area_st.find('0') == std::string::npos ) {
 				std::cout << "SOLUTION " << a << " " << b << " " << c << " " << Area << "\n";
 				print_time();
+				std::cout.flush();
 
 			}
 		}
 	}
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+
+	int counter = 0;
+
+	int64_t start = 935000000;
+	if (argc > 1)
+		start = atoll(argv[1]);
 
 	print_time();
+	std::cout.flush();
 
 
 	for (auto x : cts.cand_twosquares) {
 		int64_t c = stoi(x.first);
-		C2s.insert(c*c);
+		C2s.insert(c * c);
 	}
 
-	for (auto A : cts.cand_twosquares) {
-		int64_t a = stoi(A.first);
-		//if (a != 15487236) continue;
+	int64_t lastgroup = 0;
+
+	
+
+	//for (auto A : cts.cand_twosquares) {
+	for( auto A = cts.cand_twosquares.rbegin(); A != cts.cand_twosquares.rend(); ++A){
+		int64_t a = stoi(A->first);
+
+		if (a > start)
+			continue;
+
+		if (a / 1000000 != lastgroup) {
+			std::cout << "starting group " << a / 1000000 << "\n";
+			std::cout.flush();
+		}
+
+		lastgroup = a / 1000000;
+
+		if (a != 134297658) continue;
 		//std::cout << "a=" << a << "\n";
 
-
 		for (auto& B : cts.cand_twosquares) {
+
+
 			int64_t b = stoi(B.first);
 			if (b <= a)
 				continue;
-			//if (b != 51638427)	continue;
+			if (b != 587364219)	continue;
 
-			for (auto& pq : A.second) {
+			counter++;
+			if (counter % 5000000 == 0) {
+				//print_time();
+				//std::cout << "a= "<<A->first<< ", b= " << B.first << "\n";
+				//std::cout.flush();
+				std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+				//std::cout << " after sleep: ";
+				//print_time();
+			}
+
+			for (auto& pq : A->second) {
 				int64_t p = pq[0];
 				int64_t q = pq[1];
 
 				for (auto& uv : B.second) {
 					int64_t u = uv[0];
 					int64_t v = uv[1];
-
+					std::cout << "p, q, u, v = " << p << "," << q << "," << u << "," << v << "\n";
 					if ((p * v) % 2 == (q * u) % 2) {
 						examine(a, b, p * u + q * v, abs(p * v - q * u));
 						if (p > 0 && u > 0) examine(a, b, p * u - q * v, p * v + q * u);
@@ -127,18 +166,9 @@ int main() {
 
 	std::cout << "end time : ";
 	print_time();
+	std::cout.flush();
 }
 
-/* 
-Performance tuning attempts:
-Time to first solution
-without any mods:							2.3 min
-(time to completion 22.5 min)
-with string check to eliminate '0'& '9' :	6.5 min
-with sprintf check to eliminate '0'& '9' :	>20 min
-with sorting and eliminating duplicates :	3.5 min
-with find c^2 in std::unordered_set			5.0 min
-with find c^2 in robin_hood::unordered_set	2.0 min
-test area%6=0								2.3
+/*
 
 */
