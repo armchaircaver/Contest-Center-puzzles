@@ -53,28 +53,16 @@ void examine(int64_t a, int64_t b, int64_t d, int64_t twoArea) {
 
 	int64_t Area = twoArea / 2;
 
-
-	int64_t c2 = a * a + b * b - 2 * d;
-	if ( C2s.find(c2) != C2s.end()) {
-		int64_t c = (int64_t)sqrt((long double)c2);
-		if (cts.cand_twosquares.find(std::to_string(c)) != cts.cand_twosquares.end()) {
-			std::string Area_st = std::to_string(Area);
-			if (Area_st.find('0') == std::string::npos && Area_st.find('9') == std::string::npos) {
-				std::cout << "SOLUTION " << a << " " << b << " " << c << " " << Area << "\n";
-				print_time();
-			}
-		}
-	}
-	c2 = a * a + b * b + 2 * d;
-	//std::cout << "c2 (+2d) = " << c2 << ", c=" << sqrt(c2) << "\n";
-	if (C2s.find(c2) != C2s.end()) {
-		int64_t c = (int64_t)sqrt((long double)c2);
-		if (cts.cand_twosquares.find(std::to_string(c)) != cts.cand_twosquares.end()) {
-			std::string Area_st = std::to_string(Area);
-			if (Area_st.find('0') == std::string::npos && Area_st.find('9') == std::string::npos) {
-				std::cout << "SOLUTION " << a << " " << b << " " << c << " " << Area << "\n";
-				print_time();
-
+	for (int64_t s : {-1, 1}) {
+		int64_t c2 = a * a + b * b + s*2 * d;
+		if (C2s.find(c2) != C2s.end()) {
+			int64_t c = (int64_t)sqrt((long double)c2);
+			if (cts.cand_twosquares.find(std::to_string(c)) != cts.cand_twosquares.end()) {
+				std::string Area_st = std::to_string(Area);
+				if (Area_st.find('0') == std::string::npos && Area_st.find('9') == std::string::npos) {
+					std::cout << "SOLUTION " << a << " " << b << " " << c << " " << Area << "\n";
+					print_time();
+				}
 			}
 		}
 	}
