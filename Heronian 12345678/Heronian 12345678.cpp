@@ -1,5 +1,5 @@
 #include <map>
-#include "../is_square/is_square.h"
+//#include "../is_square/is_square.h"
 #include <cstdio>
 #include "json.hpp" 
 #include <string>
@@ -55,7 +55,7 @@ void examine(int64_t a, int64_t b, int64_t d, int64_t twoArea) {
 
 
 	int64_t c2 = a * a + b * b - 2 * d;
-	if (c2 > b * b && C2s.find(c2) != C2s.end()) {
+	if ( C2s.find(c2) != C2s.end()) {
 		int64_t c = (int64_t)sqrt((long double)c2);
 		if (cts.cand_twosquares.find(std::to_string(c)) != cts.cand_twosquares.end()) {
 			std::string Area_st = std::to_string(Area);
@@ -67,7 +67,7 @@ void examine(int64_t a, int64_t b, int64_t d, int64_t twoArea) {
 	}
 	c2 = a * a + b * b + 2 * d;
 	//std::cout << "c2 (+2d) = " << c2 << ", c=" << sqrt(c2) << "\n";
-	if (c2 > b * b && C2s.find(c2) != C2s.end()) {
+	if (C2s.find(c2) != C2s.end()) {
 		int64_t c = (int64_t)sqrt((long double)c2);
 		if (cts.cand_twosquares.find(std::to_string(c)) != cts.cand_twosquares.end()) {
 			std::string Area_st = std::to_string(Area);
@@ -98,7 +98,7 @@ int main() {
 
 		for (auto& B : cts.cand_twosquares) {
 			int64_t b = stoi(B.first);
-			if (b <= a)
+			if (b < a)
 				continue;
 			//if (b != 51638427)	continue;
 
